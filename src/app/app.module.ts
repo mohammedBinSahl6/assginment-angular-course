@@ -1,3 +1,6 @@
+import { LeaderService } from './services/leader.service';
+import { PromotionService } from './services/promotion.service';
+import { DishService } from './services/dish.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -24,8 +27,9 @@ import { FormsModule } from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-
+import { HttpClientModule} from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { baseURL } from './shared/baseurl';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,13 +58,19 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatSlideToggleModule,
     ReactiveFormsModule,
     FormsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    HttpClientModule,
    
   ],
   entryComponents: [
     LoginComponent
 ],
-  providers: [],
+  providers: [
+    DishService,
+    PromotionService,
+    LeaderService,
+    {provide: 'BaseURL', useValue : baseURL}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
