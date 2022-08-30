@@ -1,12 +1,12 @@
 
-  <div fxFlex *ngIf="dishes">
+  <div fxFlex *ngIf="dishes ">
     <div>
       <h3>Menu</h3>
       <hr>
     </div>
   </div>
 </div>
-<div [hidden]="dishes">
+<div [hidden]="dishes || errMess">
   <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
 </div>
   <div fxFlex>
@@ -18,6 +18,10 @@
         </mat-grid-tile-footer>
       </mat-grid-tile>
     </mat-grid-list>
+  </div>
+  <div fxFlex *ngIf="errMess">
+    <h2>Error</h2>
+    <h4>{{errMess}}</h4>
   </div>
   <app-dishdetails [dish] = "selectedDish"></app-dishdetails>
 
